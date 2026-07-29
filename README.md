@@ -6,7 +6,7 @@ A simple, intuitive, and modern desktop password manager built with [Tauri](http
 
 ## Features
 
-> The project is in early scaffolding stage. The features below describe the product goals.
+> The project is in early scaffolding stage. The features below describe the product goals — see [docs/roadmap.md](docs/roadmap.md) for the milestone-by-milestone tracking.
 
 1. **Secure, encrypted vault** — passwords and secrets are encrypted client-side (the master key never leaves your device) and persisted to any S3-compatible object storage: Cloudflare R2, AWS S3, MinIO, Backblaze B2, etc. This makes multi-device sync possible while keeping you in control of your data.
 2. **Powerful password generator** — highly configurable: length, uppercase/lowercase, digits, special characters (with a custom character allowlist), passphrases (word-based), and more.

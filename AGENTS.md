@@ -83,6 +83,8 @@ This is a password manager. Treat every change as security-sensitive:
 
 ## Roadmap context (not yet implemented)
 
+The authoritative feature tracker is **`docs/roadmap.md`** — consult it before starting feature work and check items off (or add newly discovered scope) as part of any change that affects it.
+
 Planned modules that do not exist yet — keep them in mind when structuring code:
 
 - `src-tauri` — vault format & crypto layer, S3/R2 storage client (likely `aws-sdk-s3` or `rust-s3` with custom endpoint support), password/passphrase generator, app-lock state machine.
