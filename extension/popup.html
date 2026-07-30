@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="brand-name">Password Manager</span>
+      </div>
+      <span id="badge" class="badge" hidden></span>
+    </header>
+
+    <main class="body">
+      <!-- 0 · working -->
+      <section id="view-loading" class="view">
+        <p class="muted centred">Looking for the desktop app…</p>
+      </section>
+
+      <!-- 1 · desktop app not reachable / bridge switched off -->
+      <section id="view-offline" class="view" hidden>
+        <h1 id="offline-title" class="title">Desktop app not reachable</h1>
+        <p id="offline-body" class="muted"></p>
+        <ul class="checklist">
+          <li>Password Manager is running on this computer.</li>
+          <li>
+            Its vault has been unlocked at least once since it started.
+          </li>
+          <li>
+            <strong>Settings → Browser extension</strong> has
+            “Allow the browser extension to connect” switched on.
+          </li>
+        </ul>
+        <button id="offline-retry" class="btn" type="button">Try again</button>
+      </section>
+
+      <!-- 2 · not paired -->
+      <section id="view-pair" class="view" hidden>
+        <h1 class="title">Pair with the desktop app</h1>
+        <ol class="steps">
+          <li>Open Password Manager and unlock your vault.</li>
+          <li>Go to <strong>Settings → Browser extension</strong>.</li>
+          <li>Choose <strong>Pair extension</strong> to get a code.</li>
+        </ol>
+        <p id="pair-note" class="note" hidden></p>
+        <label class="label" for="code">6-digit code</label>
+        <div class="row">
+          <input
+            id="code"
+            class="code"
+            type="text"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            maxlength="6"
+            placeholder="000000"
+            spellcheck="false"
+            aria-describedby="pair-hint"
+          />
+          <button id="pair-submit" class="btn" type="button" disabled>
+            Pair
+          </button>
+        </div>
+        <p id="pair-hint" class="muted small">
+          The code is valid for two minutes and can be used once.
+        </p>
+        <p id="pair-error" class="error" role="alert" hidden></p>
+      </section>
+
+      <!-- 3 · paired, vault locked -->
+      <section id="view-locked" class="view" hidden>
+        <h1 class="title">Vault locked</h1>
+        <p class="muted">
+          Unlock Password Manager on your desktop to use your saved logins here.
+          Nothing is available to the browser while it is locked.
+        </p>
+        <button id="locked-retry" class="btn" type="button">Retry</button>
+      </section>
+
+      <!-- 4 · paired and unlocked -->
+      <section id="view-list" class="view" hidden>
+        <p class="sitebar">
+          Logins for <span id="list-host" class="host"></span>
+        </p>
+        <ul id="entries" class="entries"></ul>
+        <div id="list-empty" class="empty" hidden>
+          <p class="empty-title">No saved logins for this site</p>
+          <p class="muted small">
+            Nothing in your vault matches
+            <span id="empty-host" class="host"></span>. Add an entry for it in
+            the desktop app, or check the address is the one you saved.
+          </p>
+        </div>
+        <p id="form-note" class="muted small" hidden></p>
+        <p id="list-error" class="error" role="alert" hidden></p>
+      </section>
+    </main>
+
+    <footer id="footer" class="foot" hidden>
+      <span id="footer-note" class="muted small"></span>
+      <button id="unpair" class="linkbtn" type="button">Unpair</button>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
